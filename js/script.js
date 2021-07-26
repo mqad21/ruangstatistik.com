@@ -5,6 +5,7 @@ const services = [
     title: "Analisis Data",
     desc: "Analisis Data Deskriptif dan Inferensia",
     icon: "analyze",
+    price: "199",
     detail:
       "Analisis data deskriptif dan inferensia membantu anda untuk menyelesaikan masalah berkaitan penelitian dengan metode analisis yang praktis, akurat, dan presisi.",
   },
@@ -13,6 +14,7 @@ const services = [
     title: "Time Series & Forecasting",
     desc: "Analisis Runtun Waktu dan Prediksi",
     icon: "timeseries",
+    price: "399",
     detail:
       "Analisis runtun waktu dapat membantu anda dalam memprediksi data-data di masa depan dengan metode dan asumsi ilmiah sehingga ramalan dapat dipertanggungjawabkan dalam penelitian Seperti Smoothing methods, ARIMA, ARCH-GARCH",
   },
@@ -21,6 +23,7 @@ const services = [
     title: "Analisis Multivariate",
     desc: "Analisis Peubah Ganda",
     icon: "multivariate",
+    price: "399",
     detail:
       "Structural Equation Modelling (SEM), Partial Least Square (PLS), Analisis Regresi Berganda, Regresi Moderasi, dll",
   },
@@ -29,6 +32,7 @@ const services = [
     title: "Desain Infografis",
     desc: "Infografis, Desain, Interactive Power Point, dan Videografis",
     icon: "visualization",
+    price: "299",
     detail:
       "Layanan ini dapat membantu anda dalam mengerjakan tugas kantor, kuliah, ataupun bahan presentasi yang lebih interaktif dan menarik lagi.",
   },
@@ -37,6 +41,7 @@ const services = [
     title: "Sentiment Analysis & ML",
     desc: "Analisis Sentimen dan Pembangunan Model Machine Learning",
     icon: "machine",
+    price: "499",
     detail:
       "Analisis sentimen berupa natural language processing (NLP) membantu anda untuk melihat sebuah teks dalam bentuk pandangan publik bernilai positif dan negatif. Pembangunan machine learning dapat berupa klasifikasi (Naïve Bayes, Decision Tree J48, SVM, dll) dan clustering (KNN, Agglomerative, dll).",
   },
@@ -45,6 +50,7 @@ const services = [
     title: "Ambil Data Twitter",
     desc: "Ambil Data Twitter dan Google Maps (Review, Rating, dll)",
     icon: "twitter",
+    price: "499",
     detail:
       "Data yang diambil dari twitter dapat digunakan untuk melihat pandangan publik tentang fenomena yang terjadi. Untuk data google maps dapat digunakan bagi penelitian ataupun untuk para pebisnis menganalisis pandangan publik tentang objek bisnis yang dipunyai seperti restoran, hotel, cafe, butik, apartemen dll. Sehingga dapat menaikkan daya tarik lebih serta minat pengunjung yang dapat menaikkan profit usaha.",
   },
@@ -53,7 +59,9 @@ const services = [
     title: "Cleaning Data",
     desc: "Cleaning Data dan Preprocessing",
     icon: "cleaning",
-    detail: "Cleaning data dapat berupa imputasi data, transformasi data, membuat data dapat dianalisis lebih lanjut, menghilangkan data yang tidak perlu, jika machine learning dan natural language processing untuk sentimen analysis dan lain lain maka text preprocessing lanjut akan dilakukan.",
+    price: "199",
+    detail:
+      "Cleaning data dapat berupa imputasi data, transformasi data, membuat data dapat dianalisis lebih lanjut, menghilangkan data yang tidak perlu, jika machine learning dan natural language processing untuk sentimen analysis dan lain lain maka text preprocessing lanjut akan dilakukan.",
   },
 ];
 
@@ -62,16 +70,18 @@ const serviceContainer = document.getElementById("service-card-container");
 let serviceContainerContent = "";
 services.forEach((service) => {
   serviceContainerContent += `
-    <div class="col-md-3 animate" data-anim="slide-fb">
+    <div class="col-md-6 col-lg-3 animate" data-anim="slide-fb">
         <div class="card service-card" id="${service.id}">
-            <div class="card-body text-center">
-                <div class="row justify-content-center mb-4">
-                    <div class="col-md-6 card-avatar">
-                        <img src="img/icons/${service.icon}.svg" />
+            <div class="card-body text-center row">
+                <div class="row justify-content-center col m-auto w-100 p-0">
+                    <div class="col-md-6 col-3 card-avatar mb-md-4 m-auto">
+                        <img src="img/icons/${service.icon}.svg" alt="${service.title}"/>
+                    </div>
+                    <div class="col-md-12 col-9 m-auto">
+                      <h4>${service.title}</h4>
+                      <p class="mb-0">${service.desc}</p>
                     </div>
                 </div>
-                <h4>${service.title}</h4>
-                <p class="mb-0">${service.desc}</p>
             </div>
         </div>
     </div>
@@ -123,6 +133,8 @@ const getServiceModalContent = (id) => {
     <div class="row mt-4">
       <div class="col-12">
           <p>${service.detail}</p>
+          <p class="text-start-from text-center">Mulai dari</p>
+          <p class="text-center"><span class="rp-badge">Rp</span><span class="price-badge">${service.price}</span> <span class="text-thousand">ribu</span></p>
       </div>
     </div>
   `;
@@ -159,7 +171,7 @@ const doAnimation = () => {
       el.classList.add(className);
     }
   });
-}
+};
 
 window.addEventListener("scroll", doAnimation);
 window.addEventListener("load", doAnimation);
@@ -218,15 +230,16 @@ scrollToTopBtn.addEventListener("click", scrollToTop);
 scrollToTopBtn.addEventListener("mouseover", showButton);
 document.addEventListener("scroll", handleScroll);
 
-
 // SUBSCRIBE
 const subscribeBtn = document.querySelector(".subscribe");
 
 function handleScrollSubscribe() {
   const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
   if (rootElement.scrollTop / scrollTotal > 0.1) {
+    subscribeBtn.style.display = "block";
     subscribeBtn.style.opacity = 1;
   } else {
+    subscribeBtn.style.display = "none";
     subscribeBtn.style.opacity = 0;
   }
 }
